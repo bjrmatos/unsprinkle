@@ -1,10 +1,33 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
+const heroImgSrc = 'images/hero-img.jpg'
+
 const Hero = () => {
   return (
     <Wrapper>
-      <HeroImage src="/images/hero-img.jpg" />
+      <picture>
+          <source
+            type="image/avif"
+            srcSet={`
+              ${heroImgSrc.replace('.jpg', '.avif')} 1x,
+              ${heroImgSrc.replace('.jpg', '@2x.avif')} 2x,
+              ${heroImgSrc.replace('.jpg', '@3x.avif')} 3x
+            `}
+          />
+          <source
+            type="image/jpeg"
+            srcSet={`
+              ${heroImgSrc} 1x,
+              ${heroImgSrc.replace('.jpg', '@2x.jpg')} 2x,
+              ${heroImgSrc.replace('.jpg', '@3x.jpg')} 3x
+            `}
+          />
+        <HeroImage
+          alt="An example of the photos distributed through this site (cat on black background)"
+          src={heroImgSrc}
+        />
+      </picture>
       <Swoop src="/swoop.svg" />
     </Wrapper>
   );
